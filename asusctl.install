@@ -1,0 +1,37 @@
+post_upgrade() {
+    if [[ $2 == 3* ]]; then
+        echo -e "\033[0;34m"
+        echo "-> Upgrading from asusctl 3.X.X"
+        echo "-> Enabling power-profiles-daemon and supergfxd services"
+        echo -e "\033[0m"
+        systemctl enable --now power-profiles-daemon.service
+        systemctl enable --now supergfxd.service
+        
+        platform_profile_choices=$(cat /sys/firmware/acpi/platform_profile_choices)
+
+        if [[ $platform_profile_choices != "quiet balanced performance" ]]; then
+            echo -e "\033[0;31m"
+            echo "-> Platform profile support not found on current running kernel"
+            echo "-> Fan control will not work without it"
+            echo "-> Make sure you are using kernel with that patch https://lore.kernel.org/lkml/20210814043103.2535842-2-luke@ljones.dev/"
+            echo "-> linux-g14 kernel has that patch included"
+            echo -e "\033[0m"
+        fi
+
+        if [[ -f "/etc/asusd/asusd.conf" ]]; then
+            echo -e "\033[0;33m"
+            echo "-> Old config found"
+            echo "-> Because of breaking changes your config will be moved too /etc/asusd/asusd.conf.old.3.X.X"
+            mv /etc/asusd/asusd.conf /etc/asusd/asusd.conf.old.3.X.X
+            echo -e "\033[0m"
+        fi
+
+        echo -e "\033[0m"
+    fi;
+    systemctl restart asusd.service
+}
+
+
+post_install() {
+    systemctl restart asusd.service
+}
