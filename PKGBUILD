@@ -4,9 +4,8 @@
 
 # shellcheck disable=SC2034,SC2154,SC2164
 
-pkgname=asusctl
-pkgver=4.4.0.r0.gd76cb3b
-_gitref=d76cb3b95aac844ed97117b05aaa4abc8ab2696c
+pkgver=4.6.2.r0.g7ae0f89
+_gitref=7ae0f896cf197a240b871a0228966bc36e239a3c
 pkgrel=1
 pkgdesc="Asus laptop control utilities"
 arch=('x86_64')
@@ -24,8 +23,6 @@ conflicts=('asusctl-git' 'asus-nb-ctrl-git' 'asus-nb-ctrl' 'rog-core' 'tlp')
 source=('git+https://gitlab.com/asus-linux/asusctl.git')
 md5sums=('SKIP')
 
-install="asusctl.install"
-
 pkgver() {
 	cd "$srcdir/$pkgname"
 	git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
@@ -41,10 +38,38 @@ build() {
 	make build
 }
 
-package() {
+_package-asusctl() {
 	# add runtime dependencies, these aren't needed during build
 	depends+=('power-profiles-daemon>=0.9.0+14+g112df04')
-	cd "$srcdir/$pkgname"
+	optdepends+=('rog-control-center')
+	install="asusctl.install"
+
+	cd "$srcdir/asusctl"
 	make DESTDIR="$pkgdir" install
+	rm -rf $pkgdir/usr/bin/rog-control-center
+	rm -rf $pkgdir/usr/share/rog-gui
+	rm -rf $pkgdir/usr/share/icons
+	rm -rf $pkgdir/usr/share/applications
 }
 
+_package-rog-control-center() {
+	depends+=('asusctl' 'libappindicator-gtk3')
+
+	cd "$srcdir/asusctl"
+	make DESTDIR="$pkgdir" install
+	rm -rf $pkgdir/usr/bin/asusctl
+	rm -rf $pkgdir/usr/bin/asusd
+	rm -rf $pkgdir/usr/bin/asusd-user
+	rm -rf $pkgdir/usr/lib
+	rm -rf $pkgdir/usr/share/dbus-1
+	rm -rf $pkgdir/usr/share/asusd
+	rm -rf $pkgdir/etc/asusd
+}
+
+pkgname=("asusctl" "rog-control-center")
+for _p in "${pkgname[@]}"; do
+  eval "package_$_p() {
+    $(declare -f "_package-${_p#$pkgbase}")
+    _package-${_p#$pkgbase}
+  }"
+done
