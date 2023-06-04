@@ -17,7 +17,7 @@ optdepends=(
 	'linux-rog: deprecated name for custom fan curve capability'
 	'supergfxctl: graphics swithing for iGPU + Nvidia dGPU laptops'
 	)
-makedepends=('git' 'rust')
+makedepends=('git' 'rust' 'llvm' 'clang' 'at-spi2-core' 'cairo' 'gtk3')
 provides=()
 conflicts=('asusctl-git' 'asus-nb-ctrl-git' 'asus-nb-ctrl' 'rog-core' 'tlp')
 source=('git+https://gitlab.com/asus-linux/asusctl.git')
@@ -53,7 +53,7 @@ _package-asusctl() {
 }
 
 _package-rog-control-center() {
-	depends+=('asusctl' 'libappindicator-gtk3')
+	depends+=('asusctl' 'libappindicator-gtk3' 'at-spi2-core' 'cairo' 'gtk3')
 
 	cd "$srcdir/asusctl"
 	make DESTDIR="$pkgdir" install
