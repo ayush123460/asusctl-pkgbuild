@@ -1,0 +1,45 @@
+pkgbase = asusctl
+	pkgdesc = Asus laptop control utilities
+	pkgver = 4.7.0.RC2.r0.g8be0e7e
+	pkgrel = 1
+	url = https://gitlab.com/asus-linux/asusctl
+	arch = x86_64
+	license = MPL2
+	makedepends = git
+	makedepends = rust
+	makedepends = llvm
+	makedepends = clang
+	makedepends = at-spi2-core
+	makedepends = cairo
+	makedepends = gtk3
+	depends = libusb
+	depends = udev
+	optdepends = ASUS-WMI-FAN-CONTROL: custom fan curve support
+	optdepends = linux-rog: deprecated name for custom fan curve capability
+	optdepends = supergfxctl: graphics swithing for iGPU + Nvidia dGPU laptops
+	conflicts = asusctl-git
+	conflicts = asus-nb-ctrl-git
+	conflicts = asus-nb-ctrl
+	conflicts = rog-core
+	conflicts = tlp
+	source = git+https://gitlab.com/asus-linux/asusctl.git
+	md5sums = SKIP
+
+pkgname = asusctl
+	install = asusctl.install
+	depends = libusb
+	depends = udev
+	depends = power-profiles-daemon>=0.9.0+14+g112df04
+	optdepends = ASUS-WMI-FAN-CONTROL: custom fan curve support
+	optdepends = linux-rog: deprecated name for custom fan curve capability
+	optdepends = supergfxctl: graphics swithing for iGPU + Nvidia dGPU laptops
+	optdepends = rog-control-center
+
+pkgname = rog-control-center
+	depends = libusb
+	depends = udev
+	depends = asusctl
+	depends = libappindicator-gtk3
+	depends = at-spi2-core
+	depends = cairo
+	depends = gtk3
