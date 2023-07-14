@@ -16,7 +16,7 @@ pkgbase = asusctl
 	depends = udev
 	optdepends = ASUS-WMI-FAN-CONTROL: custom fan curve support
 	optdepends = linux-rog: deprecated name for custom fan curve capability
-	optdepends = supergfxctl: graphics swithing for iGPU + Nvidia dGPU laptops
+	optdepends = supergfxctl: graphics swithing for iGPU + dGPU laptops
 	conflicts = asusctl-git
 	conflicts = asus-nb-ctrl-git
 	conflicts = asus-nb-ctrl
@@ -32,7 +32,7 @@ pkgname = asusctl
 	depends = power-profiles-daemon>=0.9.0+14+g112df04
 	optdepends = ASUS-WMI-FAN-CONTROL: custom fan curve support
 	optdepends = linux-rog: deprecated name for custom fan curve capability
-	optdepends = supergfxctl: graphics swithing for iGPU + Nvidia dGPU laptops
+	optdepends = supergfxctl: graphics swithing for iGPU + dGPU laptops
 	optdepends = rog-control-center
 
 pkgname = rog-control-center
