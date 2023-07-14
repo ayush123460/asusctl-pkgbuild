@@ -4,8 +4,8 @@
 
 # shellcheck disable=SC2034,SC2154,SC2164
 
-pkgver=4.6.2.r0.g7ae0f89
-_gitref=7ae0f896cf197a240b871a0228966bc36e239a3c
+pkgver=4.7.0.RC2.r0.g8be0e7e
+_gitref=8be0e7e6bf933f25bc6522b7143eb3425278843b
 pkgrel=1
 pkgdesc="Asus laptop control utilities"
 arch=('x86_64')
@@ -15,9 +15,9 @@ depends=('libusb' 'udev')
 optdepends=(
 	'ASUS-WMI-FAN-CONTROL: custom fan curve support'
 	'linux-rog: deprecated name for custom fan curve capability'
-	'supergfxctl: graphics swithing for iGPU + Nvidia dGPU laptops'
+	'supergfxctl: graphics swithing for iGPU + dGPU laptops'
 	)
-makedepends=('git' 'rust')
+makedepends=('git' 'rust' 'llvm' 'clang' 'at-spi2-core' 'cairo' 'gtk3')
 provides=()
 conflicts=('asusctl-git' 'asus-nb-ctrl-git' 'asus-nb-ctrl' 'rog-core' 'tlp')
 source=('git+https://gitlab.com/asus-linux/asusctl.git')
@@ -53,7 +53,7 @@ _package-asusctl() {
 }
 
 _package-rog-control-center() {
-	depends+=('asusctl' 'libappindicator-gtk3')
+	depends+=('asusctl' 'libappindicator-gtk3' 'at-spi2-core' 'cairo' 'gtk3')
 
 	cd "$srcdir/asusctl"
 	make DESTDIR="$pkgdir" install
