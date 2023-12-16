@@ -4,9 +4,9 @@
 
 # shellcheck disable=SC2034,SC2154,SC2164
 
-pkgver=4.7.0.r0.g2d396a4
-_gitref=2d396a49daddae3bdb124123218257dd880fea84
-pkgrel=1
+pkgver=5.0.1.r0.g9aa332d
+_gitref=9aa332de3b8afc425dd955aca978f6a614e1305b
+pkgrel=2
 pkgdesc="Asus laptop control utilities"
 arch=('x86_64')
 url="https://gitlab.com/asus-linux/asusctl"

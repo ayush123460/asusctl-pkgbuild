@@ -51,6 +51,27 @@ post_upgrade() {
         echo -e "\033[0m"
     fi
 
+    if [ -d '/etc/mkinitcpio.conf.d' ]; then
+        if [ ! -f "/etc/mkinitcpio.conf.d/asus.conf" ]; then
+            echo -e "\033[0;33m"
+            echo "-> Adding asus modules to mkinitcpio.conf"
+            echo "MODULES+=(hid_asus asus_wmi asus_nb_wmi)" > /etc/mkinitcpio.conf.d/asus.conf
+            for f in /etc/mkinitcpio.d/*; do
+                all_config_fixed=$(cat $f | grep "#ALL_config" | wc -l)
+                default_config_fixed=$(cat $f | grep "#default_config" | wc -l)
+                if [[ $all_config_fixed == 0 ]]; then
+                    sed -i 's/^ALL_config/#&/' $f 
+                fi
+                if [[ $default_config_fixed == 0 ]]; then
+                    sed -i 's/^default_config/#&/' $f 
+                fi
+
+                mkinitcpio -p $(basename -s .preset $f)
+            done
+            echo -e "\033[0m"
+        fi
+    fi
+
     # we might have missed this in a prior upgrade from 3.x
     cleanup_asusd_leftovers
 
