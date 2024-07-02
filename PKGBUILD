@@ -4,8 +4,8 @@
 
 # shellcheck disable=SC2034,SC2154,SC2164
 
-pkgver=5.0.4.r0.gf421b8e
-_gitref=f421b8ee3b5409811e05b40429f7c47a78ba0a77
+pkgver=6.0.11.r0.gf14d1ad
+_gitref=f14d1ad61ead5b28508b27c25373e17ae16f8a7a
 pkgrel=1
 pkgdesc="Asus laptop control utilities"
 arch=('x86_64')
@@ -40,8 +40,7 @@ build() {
 
 _package-asusctl() {
 	# add runtime dependencies, these aren't needed during build
-	depends+=('power-profiles-daemon>=0.9.0+14+g112df04')
-	optdepends+=('rog-control-center')
+	optdepends+=('rog-control-center' 'power-profiles-daemon')
 	install="asusctl.install"
 
 	cd "$srcdir/asusctl"
@@ -53,7 +52,7 @@ _package-asusctl() {
 }
 
 _package-rog-control-center() {
-	depends+=('asusctl' 'libappindicator-gtk3' 'at-spi2-core' 'cairo' 'gtk3')
+	depends+=('asusctl' 'libappindicator-gtk3' 'at-spi2-core' 'cairo' 'gtk3' 'seatd')
 
 	cd "$srcdir/asusctl"
 	make DESTDIR="$pkgdir" install
