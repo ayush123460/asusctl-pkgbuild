@@ -4,8 +4,8 @@
 
 # shellcheck disable=SC2034,SC2154,SC2164
 
-pkgver=6.1.3.r0.ge8585e2e
-_gitref=e8585e2e230a7d4537648ae53884349f40050fd3
+pkgver=6.1.5.r0.g21c468cf
+_gitref=21c468cf023b0f9ba91229e6010171be6a39149e
 pkgrel=1
 pkgdesc="Asus laptop control utilities"
 arch=('x86_64')
