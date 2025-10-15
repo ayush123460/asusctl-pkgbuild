@@ -4,8 +4,8 @@
 
 # shellcheck disable=SC2034,SC2154,SC2164
 
-pkgver=6.1.5.r0.g21c468cf
-_gitref=21c468cf023b0f9ba91229e6010171be6a39149e
+pkgver=6.1.15.r0.g319373fa
+_gitref=319373faea1ed1e1e9938df893a163b617dbecf3
 pkgrel=1
 pkgdesc="Asus laptop control utilities"
 arch=('x86_64')
@@ -63,6 +63,7 @@ _package-rog-control-center() {
 	rm -rf $pkgdir/usr/share/dbus-1
 	rm -rf $pkgdir/usr/share/asusd
 	rm -rf $pkgdir/etc/asusd
+	rm -rf $pkgdir/usr/share/asusctl/LICENSE
 }
 
 pkgname=("asusctl" "rog-control-center")
