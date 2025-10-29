@@ -52,7 +52,7 @@ _package-asusctl() {
 }
 
 _package-rog-control-center() {
-	depends+=('asusctl' 'libappindicator-gtk3' 'at-spi2-core' 'cairo' 'gtk3' 'seatd', 'ttf-font')
+	depends+=('asusctl' 'libappindicator-gtk3' 'at-spi2-core' 'cairo' 'gtk3' 'seatd' 'ttf-font')
 
 	cd "$srcdir/asusctl"
 	make DESTDIR="$pkgdir" install
