@@ -5,7 +5,7 @@
 # shellcheck disable=SC2034,SC2154,SC2164
 
 pkgver=6.1.15.r0.g319373fa
-_gitref=319373faea1ed1e1e9938df893a163b617dbecf3
+_gitref=c9e76f327376c8bb6ab4e4cc5187954aa8cdc538
 pkgrel=1
 pkgdesc="Asus laptop control utilities"
 arch=('x86_64')
@@ -52,7 +52,7 @@ _package-asusctl() {
 }
 
 _package-rog-control-center() {
-	depends+=('asusctl' 'libappindicator-gtk3' 'at-spi2-core' 'cairo' 'gtk3' 'seatd')
+	depends+=('asusctl' 'libappindicator-gtk3' 'at-spi2-core' 'cairo' 'gtk3' 'seatd', 'ttf-font')
 
 	cd "$srcdir/asusctl"
 	make DESTDIR="$pkgdir" install
