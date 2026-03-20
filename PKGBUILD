@@ -4,9 +4,9 @@
 
 # shellcheck disable=SC2034,SC2154,SC2164
 
-pkgver=6.3.1.r0.ga9f4aac8
-_gitref=a9f4aac87541961362d2818eb652cab1ceb7a307
-pkgrel=1
+pkgver=6.3.5.r0.g96fb55b1
+_gitref=96fb55b1702c40d588a1c040138d41c7be2fed16
+pkgrel=2
 pkgdesc="Asus laptop control utilities"
 arch=('x86_64')
 url="https://gitlab.com/asus-linux/asusctl"
@@ -59,6 +59,7 @@ _package-rog-control-center() {
 	rm -rf $pkgdir/usr/bin/asusctl
 	rm -rf $pkgdir/usr/bin/asusd
 	rm -rf $pkgdir/usr/bin/asusd-user
+	rm -rf $pkgdir/usr/bin/asus-shutdown
 	rm -rf $pkgdir/usr/lib
 	rm -rf $pkgdir/usr/share/dbus-1
 	rm -rf $pkgdir/usr/share/asusd
