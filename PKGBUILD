@@ -1,15 +1,16 @@
-# Maintainer: dragonn <>
+# Maintainer: thatayush <me@ayushm.com>
+# Previous maintainer: dragonn <dragonn@op.pl>
 # Contributor: Arglebargle <arglebargle@arglebargle.dev>
 # Contributor: Static_Rocket
 
 # shellcheck disable=SC2034,SC2154,SC2164
 
-pkgver=6.3.5.r0.g96fb55b1
-_gitref=96fb55b1702c40d588a1c040138d41c7be2fed16
-pkgrel=2
+pkgver=6.3.8
+_gitref=47bf9b134b4e702e0b5e18db7cc66839e42d9035
+pkgrel=1
 pkgdesc="Asus laptop control utilities"
 arch=('x86_64')
-url="https://gitlab.com/asus-linux/asusctl"
+url="https://github.com/OpenGamingCollective/asusctl"
 license=('MPL2')
 depends=('libusb' 'udev')
 optdepends=(
@@ -20,7 +21,7 @@ optdepends=(
 makedepends=('git' 'rust' 'llvm' 'clang' 'at-spi2-core' 'cairo' 'gtk3')
 provides=()
 conflicts=('asusctl-git' 'asus-nb-ctrl-git' 'asus-nb-ctrl' 'rog-core' 'tlp')
-source=('git+https://gitlab.com/asus-linux/asusctl.git')
+source=('git+https://github.com/OpenGamingCollective/asusctl.git')
 md5sums=('SKIP')
 
 pkgver() {
